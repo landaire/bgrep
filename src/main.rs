@@ -54,8 +54,6 @@ fn find_pattern<R: Seek + Read>(source: &mut R, pattern: &Vec<u8>) -> bool {
 
         source.read(&mut buffer).ok();
 
-        println!("buffer: {:X}, pattern: {:}", buffer.as_slice()[0], str::from_utf8(pattern).unwrap());
-
         if buffer.as_slice() == pattern.as_slice() {
             return true;
         }

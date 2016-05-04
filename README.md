@@ -4,6 +4,16 @@
 
 Want a simple tool for searching for binary patterns in a file? This does that.
 
+## Install
+
+*Note*: Requires rust to be installed on the target system
+
+```
+cargo build --release
+```
+
+The output binary should be in `./target/release/bgrep`
+
 ## Usage
 
 ```

@@ -1,0 +1,7 @@
+[package]
+name = "bgrep"
+version = "0.1.0"
+authors = ["Lander Brandt <landerbrandt@gmail.com>"]
+
+[dependencies]
+rustc-serialize = "0.3"

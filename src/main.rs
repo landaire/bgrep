@@ -37,12 +37,12 @@ fn main() {
 
     let mut reader = BufReader::new(file.unwrap());
 
-    if find_pattern(&mut reader, &pattern) {
-        println!("Found a match in {}", file_path);
+    if let Some(offset) = find_pattern(&mut reader, &pattern) {
+        println!("Found a match in {} at offset 0x{:x}", file_path, offset);
     }
 }
 
-fn find_pattern<R: Seek + Read>(source: &mut R, pattern: &Vec<u8>) -> bool {
+fn find_pattern<R: Seek + Read>(source: &mut R, pattern: &Vec<u8>) -> Option<u64> {
     let mut offset = 0;
     let end_offset = source.seek(SeekFrom::End(0)).unwrap();
 
@@ -55,9 +55,9 @@ fn find_pattern<R: Seek + Read>(source: &mut R, pattern: &Vec<u8>) -> bool {
         source.read(&mut buffer).ok();
 
         if buffer.as_slice() == pattern.as_slice() {
-            return true;
+            return Some(offset);
         }
     }
 
-    return false;
+    None
 }
